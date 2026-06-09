@@ -8,4 +8,16 @@ public class Usuario {
         this.nombre = nombre;
         this.edad = edad;
     }
+
+    public Integer getDni() {
+        return dni;
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
 }

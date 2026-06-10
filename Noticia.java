@@ -6,11 +6,16 @@ public class Noticia {
     private String detalle;
     private Autor autor;
     private ArrayList<Comentario> comentarios;
+    private Fecha fecha;
 
-    Noticia(String titulo, String detalle, Autor autor){
+    public Noticia(String titulo, String detalle, Autor autor, Fecha fecha){
+        if(titulo == null || titulo.isEmpty()) throw new NullPointerException("titulo no puede estar vacio");
+        if(detalle == null || detalle.isEmpty()) throw new NullPointerException("detalle no puede estar vacio");
+        if(fecha == null) throw new NullPointerException("fecha no puede estar vacia");
         this.titulo = titulo;
         this.detalle = detalle;
         this.autor = autor;
+        this.fecha = fecha;
         comentarios = new ArrayList<Comentario>();
     }
 
@@ -32,11 +37,10 @@ public class Noticia {
     }
 
     public String ToString(){
-        return titulo + ", "+ autor.getNombre() + ", " + detalle ;
+        return fecha.toString() + ", " + titulo + ", "+ autor.getNombre() + ", " + detalle;
     }
     
     public void registrarComentario(String texto, Lector lector){
-        if (texto == null || texto.isEmpty()) throw new IllegalArgumentException("El comentario no puede estar vacío");
         Comentario c = new Comentario(comentarios.size()+1, texto, lector);
         comentarios.add(c);
     }

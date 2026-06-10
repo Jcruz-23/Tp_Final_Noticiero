@@ -17,9 +17,4 @@ public class Lector extends Usuario{
     public String getNombre() {
         return super.getNombre();
     }
-
-    
-    public String ToString(){
-        return getDni() + ", " + getNombre() + ", " + getEdad();
-    }
 }

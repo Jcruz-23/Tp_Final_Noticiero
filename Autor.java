@@ -11,7 +11,7 @@ public class Autor extends Usuario{
         return medio;
     }
 
-    public String ToString(){
-        return getDni() + ", " + getNombre() + ", " + getEdad() + ", " + medio;
+    public String ToStringAutor(){
+        return ToString() + ", " + medio;
     }
 }

@@ -21,6 +21,14 @@ public class Comentario {
         return texto;
     }
 
+    public String getNombreArchivo(){
+        return "comentarios";
+    }
+
+    public String getContenido(){
+        return ToString();
+    }
+
     public String ToString(){
         return lector.getNombre() + ", " + numero + ", " + texto;
     }

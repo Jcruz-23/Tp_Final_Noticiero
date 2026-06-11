@@ -3,18 +3,11 @@ public class Lector extends Usuario{
         super(dni, nombre, edad);
     }
 
-    @Override
-    public Integer getDni() {
-        return super.getDni();
-    }
+   public String getNombreArchivo(){
+    return "lectores";
+   }
 
-    @Override
-    public Integer getEdad() {
-        return super.getEdad();
-    }
-
-    @Override
-    public String getNombre() {
-        return super.getNombre();
-    }
+   public String getContenido(){
+    return toString();
+   }
 }

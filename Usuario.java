@@ -25,4 +25,8 @@ public class Usuario {
     public String getNombre() {
         return nombre;
     }
+
+    public String ToString(){
+        return dni + ", " + nombre + ", " + edad;
+    }
 }

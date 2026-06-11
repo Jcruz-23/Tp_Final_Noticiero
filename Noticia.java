@@ -22,7 +22,6 @@ public class Noticia {
     public Autor getAutor() {
         return autor;
     }
-
     
     public String getDetalle() {
         return detalle;
@@ -34,6 +33,14 @@ public class Noticia {
     
     public ArrayList<Comentario> getComentarios() {
         return comentarios;
+    }
+
+    public String getNombreArchivo(){
+        return "noticias";
+    } 
+
+    public String getContenido(){
+        return ToString();
     }
 
     public String ToString(){

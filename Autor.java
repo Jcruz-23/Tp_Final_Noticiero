@@ -7,6 +7,14 @@ public class Autor extends Usuario{
         this.medio = medio;
     }
 
+    public String getNombreArchivo(){
+        return "autores";
+    }
+
+    public String getContenido(){
+        return ToStringAutor();
+    }
+
     public String getMedio() {
         return medio;
     }

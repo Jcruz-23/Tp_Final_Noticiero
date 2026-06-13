@@ -1,4 +1,9 @@
-public class Comentario {
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Comentario implements Archivable, Encadenable{
     private Integer numero;
     private String texto;
     private Lector lector;
@@ -21,12 +26,12 @@ public class Comentario {
         return texto;
     }
 
-    public String getNombreArchivo(){
-        return "comentarios";
-    }
-
-    public String getContenido(){
-        return ToString();
+    public void Archivar() throws IOException{
+        FileWriter a = new FileWriter("Comentarios", true);
+        BufferedWriter b = new BufferedWriter(a);
+        b.write(ToString());
+        b.newLine();
+        b.close();
     }
 
     public String ToString(){

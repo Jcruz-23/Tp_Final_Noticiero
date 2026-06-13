@@ -1,4 +1,6 @@
-public class Autor extends Usuario{
+import java.io.*;
+
+public class Autor extends Usuario implements Archivable{
     private String medio;
 
     public Autor(Integer dni, String nombre, Integer edad, String medio){
@@ -7,19 +9,19 @@ public class Autor extends Usuario{
         this.medio = medio;
     }
 
-    public String getNombreArchivo(){
-        return "autores";
-    }
-
-    public String getContenido(){
-        return ToStringAutor();
-    }
-
     public String getMedio() {
         return medio;
     }
 
-    public String ToStringAutor(){
+    public void Archivar() throws IOException{
+        FileWriter a = new FileWriter("Autores", true);
+        BufferedWriter b = new BufferedWriter(a);
+        b.write(ToString());
+        b.newLine();
+        b.close();
+    }
+
+    public String ToString(){
         return ToString() + ", " + medio;
     }
 }

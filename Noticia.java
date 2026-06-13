@@ -1,7 +1,10 @@
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class Noticia {
+public class Noticia implements Archivable, Encadenable{
     private String titulo;
     private String detalle;
     private Autor autor;
@@ -35,16 +38,22 @@ public class Noticia {
         return comentarios;
     }
 
-    public String getNombreArchivo(){
-        return "noticias";
-    } 
-
-    public String getContenido(){
-        return ToString();
+    @Override
+    public void Archivar() throws IOException{
+        FileWriter a = new FileWriter("Noticias", true);
+        BufferedWriter b = new BufferedWriter(a);
+        b.write(ToString());
+        b.newLine();
+        b.close();
     }
 
+    @Override
     public String ToString(){
-        return fecha.toString() + ", " + titulo + ", "+ autor.getNombre() + ", " + detalle;
+        return fecha.ToString() + ", " + titulo + ", "+ autor.getNombre() + ", " + detalle;
+    }
+
+    public Fecha getFecha() {
+        return fecha;
     }
     
     public void registrarComentario(String texto, Lector lector){

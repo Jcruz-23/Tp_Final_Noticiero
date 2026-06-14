@@ -1,30 +1,61 @@
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Representa el sistema que integra las funcionalidades de cada clase.
+ * @author Juan Cruz Sanchez Solano, Rocio Garzon
+ * @version 0.1
+ */
 public class Noticiero {
-
+    
     private ArrayList<Autor> autores;
     private ArrayList<Lector> lectores;
     private ArrayList<Noticia> noticias;
 
+    /**
+     * Constructor de objetos del tipo noticiero
+     */
     public Noticiero(){
         autores = new ArrayList<Autor>();
         lectores = new ArrayList<Lector>();
         noticias = new ArrayList<Noticia>();
     }
 
-    public void registrarLector(String nombre, Integer dni, Integer edad){
+    /**
+     * Agrega un usuario a la lista de lectores 
+     * @param nombre del usuario
+     * @param dni del usuario
+     * @param edad del usuario
+     * @throws IOException si no se agrega el lector al archivo registro de lectores
+     */
+    public void registrarLector(String nombre, Integer dni, Integer edad) throws IOException{
         Lector lector = new Lector(dni, nombre, edad);
+        lector.Archivar();
         lectores.add(lector);
     }
 
-    public void generarNoticia(String titulo, String detalle, Autor autor){
+    /**
+     * Crea la noticia a publicar 
+     * @param titulo de la noticia
+     * @param detalle que contiene la noticia
+     * @param autor que escribio la noticia
+     * @throws IOException si no se agrega la noticia al archivo registro de noticias
+     */
+    public void generarNoticia(String titulo, String detalle, Autor autor) throws IOException{
         Fecha fecha = generarFechaRandom();
         Noticia noticia = new Noticia(titulo, detalle, autor, fecha);
+        noticia.Archivar();
         noticias.add(noticia);
     }
 
+    /**
+     * Busca un autor por su dni
+     * @param dni del autor
+     * @return el autor encontrado
+     * @throws ParametroNoEncontradoException si no encuentra el autor
+     */
     public Autor buscarAutor(Integer dni) throws ParametroNoEncontradoException{
         for(Autor a : autores){
             if(a.getDni().equals(dni)){
@@ -34,6 +65,9 @@ public class Noticiero {
         throw new ParametroNoEncontradoException("El autor no ha sido encontrado");
     }
 
+    /**
+     * Lista las noticias que se publicaron por ultima vez
+     */
     public void listarNoticiasUltimoMes(){
       Fecha fecha = buscarUltimoMes();
       for(Noticia n : noticias){
@@ -69,11 +103,20 @@ public class Noticiero {
         return fecha;
     }
 
-    public Noticia buscarNoticiaPorAutor(String nombre, Integer dni) throws ParametroNoEncontradoException{
+    /**
+     * Busca las noticias de un autor especifico
+     * @param nombre del autor
+     * @param dni del autor
+     * @return lista de noticias encontradas
+     * @throws ParametroNoEncontradoException si no se encuentran noticias del autor
+     */
+    public ArrayList<Noticia> buscarNoticiaPorAutor(String nombre, Integer dni) throws ParametroNoEncontradoException{
+        ArrayList<Noticia> noticias_encontradas = new ArrayList<>();
         for(Noticia n : noticias){
             if(n.getAutor().getNombre().equals(nombre)){
                 if(n.getAutor().getDni().equals(dni)){
-                    return n;
+                    noticias_encontradas.add(n);
+                    return noticias_encontradas;
                 }
             }
         }
@@ -89,22 +132,45 @@ public class Noticiero {
         return fecha;
     }
 
-    public void registrarAutor(Integer dni, String nombre, Integer edad, String medio){
+    /**
+     * Agrega un autor a la lista de autores
+     * @param dni del autor
+     * @param nombre del autor
+     * @param edad del autor
+     * @param medio en el que se publican las noticias del autor
+     * @throws IOException si no se agrea el autor al archivo registro de autores
+     */
+    public void registrarAutor(Integer dni, String nombre, Integer edad, String medio) throws IOException{
         Autor a = new Autor(dni, nombre, edad, medio);
+        a.Archivar();
         autores.add(a);
     }
 
+    /**
+     * Lista las noticias que se publicaron en un año especifico
+     * @param anio a buscar
+     */
     public void listarNoticiasAnio(Integer anio){
         for (Noticia a : noticias){
             if(anio.equals(a.getFecha().getAnio())) System.out.println(a.ToString());
         }
     }
 
+    /**
+     * Muestra una noticia 
+     * @param titulo de la noticia que desee verse
+     */
     public void mostrarNoticia(String titulo) throws ParametroNoEncontradoException{
         Noticia noticia = buscarNoticia(titulo);
         System.out.println(noticia.ToString());
     }
 
+    /**
+     * Busca una noticia por su titulo
+     * @param titulo de la noticia
+     * @return noticia encontrada
+     * @throws ParametroNoEncontradoException si no se encuentra ninguna noticia
+     */
     public Noticia buscarNoticia(String titulo) throws ParametroNoEncontradoException{
         for(Noticia n : noticias){
             if(n.getTitulo().equals(titulo)) return n; 
@@ -112,6 +178,12 @@ public class Noticiero {
         throw new ParametroNoEncontradoException("No se ha encontrado la noticia");
     }
 
+    /**
+     * Busca un lector 
+     * @param dni del lector a buscar
+     * @return lector encontrado
+     * @throws ParametroNoEncontradoException si no se encuentra el lector
+     */ 
     public Lector buscarLector(Integer dni) throws ParametroNoEncontradoException{
         for(Lector l : lectores){
             if(l.getDni().equals(dni)){

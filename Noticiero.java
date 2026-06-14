@@ -112,4 +112,13 @@ public class Noticiero {
         throw new ParametroNoEncontradoException("No se ha encontrado la noticia");
     }
 
+    public Lector buscarLector(Integer dni) throws ParametroNoEncontradoException{
+        for(Lector l : lectores){
+            if(l.getDni().equals(dni)){
+                return l;
+            }
+        }
+        throw new ParametroNoEncontradoException("El lector no ha sido encontrado");
+    }
+
 }

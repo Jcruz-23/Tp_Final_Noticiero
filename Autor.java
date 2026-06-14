@@ -13,6 +13,7 @@ public class Autor extends Usuario implements Archivable{
         return medio;
     }
 
+    @Override
     public void Archivar() throws IOException{
         FileWriter a = new FileWriter("Autores", true);
         BufferedWriter b = new BufferedWriter(a);
@@ -21,7 +22,7 @@ public class Autor extends Usuario implements Archivable{
         b.close();
     }
 
-    public String ToString(){
+    public String ToStringActor(){
         return ToString() + ", " + medio;
     }
 }

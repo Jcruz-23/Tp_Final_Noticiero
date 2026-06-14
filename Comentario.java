@@ -25,7 +25,8 @@ public class Comentario implements Archivable, Encadenable{
     public String getTexto() {
         return texto;
     }
-
+    
+    @Override
     public void Archivar() throws IOException{
         FileWriter a = new FileWriter("Comentarios", true);
         BufferedWriter b = new BufferedWriter(a);
@@ -34,6 +35,7 @@ public class Comentario implements Archivable, Encadenable{
         b.close();
     }
 
+    @Override
     public String ToString(){
         return lector.getNombre() + ", " + numero + ", " + texto;
     }

@@ -1,7 +1,7 @@
-public class Usuario {
-    private Integer dni;
-    private String nombre;
-    private Integer edad;
+public class Usuario implements Encadenable{
+    private  Integer dni;
+    private  String nombre;
+    private  Integer edad;
 
     Usuario(Integer dni, String nombre, Integer edad){
         if(dni == null) throw new NullPointerException("dni no puede estar vacio");
@@ -26,6 +26,7 @@ public class Usuario {
         return nombre;
     }
 
+    @Override
     public String ToString(){
         return dni + ", " + nombre + ", " + edad;
     }

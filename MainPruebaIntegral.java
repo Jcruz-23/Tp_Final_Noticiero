@@ -51,7 +51,7 @@ public class MainPruebaIntegral {
 
             System.out.println("\n=== Mostrar noticia ===");
             noticiero.mostrarNoticia("Empieza el mundial");
-
+            
             System.out.println("\n=== Excepcion: autor no encontrado ===");
             noticiero.buscarAutor(99999999);
 

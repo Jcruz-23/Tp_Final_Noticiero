@@ -163,6 +163,10 @@ public class Noticiero {
     public void mostrarNoticia(String titulo) throws ParametroNoEncontradoException{
         Noticia noticia = buscarNoticia(titulo);
         System.out.println(noticia.ToString());
+        for(Comentario c : buscarNoticia("Empieza el mundial").getComentarios()){
+            System.out.println(c.ToString());
+        }
+
     }
 
     /**
